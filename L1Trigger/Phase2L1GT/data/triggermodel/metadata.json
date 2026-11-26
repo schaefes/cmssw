@@ -1,0 +1,80 @@
+{
+  "config": {
+    "compiler": {
+      "name": "event_tagger",
+      "ml_backend": "keras",
+      "compiler": "alkaid",
+      "n_outputs": 1,
+      "clock_period": 5.0,
+      "in_kif": [
+        1,
+        22,
+        10
+      ],
+      "out_kif": [
+        1,
+        6,
+        10
+      ],
+      "weight_frac_bits": 10,
+      "input_shape": [
+        62
+      ]
+    },
+    "deployment": {
+      "inputs": [
+        {
+          "tag": [
+            "l1tGTProducer",
+            "L1puppiJetSC4NG"
+          ],
+          "n_objects": 6,
+          "features": [
+            "pT",
+            "eta",
+            "phi",
+            "bTagScore",
+            "cTagScore",
+            "udsTagScore",
+            "tau_pTagScore",
+            "tau_nTagScore",
+            "eTagScore",
+            "muTagScore"
+          ],
+          "sort": "pT:desc"
+        },
+        {
+          "tag": [
+            "l1tGTProducer",
+            "CL2HtSum"
+          ],
+          "n_objects": 1,
+          "features": [
+            "scalarSumPT"
+          ]
+        },
+        {
+          "tag": [
+            "l1tGTProducer",
+            "CL2EtSum"
+          ],
+          "n_objects": 1,
+          "features": [
+            "pT"
+          ]
+        }
+      ],
+      "decision": {
+        "threshold": 0.95,
+        "pass_above": true,
+        "trigger_types": 1
+      }
+    }
+  },
+  "created_at": "2026-11-20T10:18:57.187161",
+  "name": "event_tagger",
+  "ml_backend": "keras",
+  "compiler": "alkaid",
+  "n_outputs": 1,
+  "n_inputs": 62
+}

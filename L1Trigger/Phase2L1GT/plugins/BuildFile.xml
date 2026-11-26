@@ -9,6 +9,8 @@
 <use name="DataFormats/L1Trigger"/>
 <use name="DataFormats/Provenance"/>
 <use name="DataFormats/L1TMuonPhase2"/>
+<use name="DataFormats/L1TParticleFlow"/>
+<use name="DataFormats/NanoAOD"/>
 <use name="L1Trigger/DemonstratorTools"/>
 <use name="L1Trigger/Phase2L1GT"/>
 <use name="hls"/>

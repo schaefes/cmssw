@@ -43,7 +43,7 @@ process.l1tGTProducer = cms.EDProducer(
     filename=cms.string(options.inputFile),
 )
 
-from L1Trigger.Phase2L1GT.l1tGTScoreProducer_cfi import l1tGTScoreProducer
+from L1Trigger.Phase2L1GT.l1GTScoreProducer_cfi import l1tGTScoreProducer
 
 process.l1tGTScoreProducer = l1tGTScoreProducer.clone()
 

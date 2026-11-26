@@ -16,7 +16,9 @@ def collectAlgorithmPaths(process) -> "tuple[cms.Path]":
     for algorithm in algorithms:
         algo_paths = re.sub(r'[()]'," " , algorithm.expression.value()).split()
         for algo in algo_paths:
-            if algo in process.pathNames() :
+            # process.paths: dict of path labels (pathNames() is one string, so a
+            # membership test on it would match substrings such as the "or" operator)
+            if algo in process.paths:
                 str_paths.add(algo)
     paths = set()
 
