@@ -1,0 +1,102 @@
+{
+  "config": {
+    "compiler": {
+      "name": "event_tagger_hh2b2tau",
+      "ml_backend": "keras",
+      "compiler": "alkaid",
+      "n_outputs": 1,
+      "clock_period": 5.0,
+      "in_kif": [
+        1,
+        22,
+        10
+      ],
+      "out_kif": [
+        1,
+        6,
+        10
+      ],
+      "weight_frac_bits": 10,
+      "input_shape": [
+        62
+      ]
+    },
+    "deployment": {
+      "inputs": [
+        {
+          "tag": [
+            "l1tGTProducer",
+            "L1puppiJetSC4NG"
+          ],
+          "n_objects": 6,
+          "features": [
+            "pT",
+            "eta",
+            "phi",
+            "bTagScore",
+            "cTagScore",
+            "udsTagScore",
+            "tau_pTagScore",
+            "tau_nTagScore",
+            "eTagScore",
+            "muTagScore"
+          ],
+          "sort": "pT:desc"
+        },
+        {
+          "tag": [
+            "l1tGTProducer",
+            "CL2HtSum"
+          ],
+          "n_objects": 1,
+          "features": [
+            "scalarSumPT"
+          ]
+        },
+        {
+          "tag": [
+            "l1tGTProducer",
+            "CL2EtSum"
+          ],
+          "n_objects": 1,
+          "features": [
+            "pT"
+          ]
+        }
+      ],
+      "decision": {
+        "threshold": 0.95,
+        "pass_above": true,
+        "trigger_types": 1
+      }
+    },
+    "model_inputs": {
+      "jets": {
+        "n_objects": 6,
+        "features": [
+          "pT",
+          "eta",
+          "phi",
+          "bTagScore",
+          "cTagScore",
+          "udsTagScore",
+          "tau_pTagScore",
+          "tau_nTagScore",
+          "eTagScore",
+          "muTagScore"
+        ]
+      },
+      "event": [
+        "ht_scalarSumPT",
+        "met_pT"
+      ]
+    }
+  },
+  "created_at": "2026-11-26T10:07:46.680795",
+  "name": "event_tagger_hh2b2tau",
+  "ml_backend": "keras",
+  "compiler": "alkaid",
+  "n_outputs": 1,
+  "n_inputs": 62,
+  "source": "TopoFlow/event_tagger data/06_compile/triggermodel.tar.xz (2026-11-26, signal hh2b2tau vs minbias)"
+}

@@ -1,0 +1,48 @@
+{
+  "hh4b": {
+    "Loose": {
+      "threshold": 3.9755859375,
+      "rate_khz": 49.96784048882457,
+      "rate_err_khz": 1.417277903505724,
+      "eff HH4b (50k CMSSW nano)": 0.77606,
+      "eff HH->bbtautau (test set)": 0.6623217922606924
+    },
+    "Medium": {
+      "threshold": 5.5185546875,
+      "rate_khz": 19.97909631773597,
+      "rate_err_khz": 0.8961849497350038,
+      "eff HH4b (50k CMSSW nano)": 0.64744,
+      "eff HH->bbtautau (test set)": 0.5018329938900203
+    },
+    "Tight": {
+      "threshold": 6.798828125,
+      "rate_khz": 9.969448464383342,
+      "rate_err_khz": 0.6330606105492692,
+      "eff HH4b (50k CMSSW nano)": 0.52984,
+      "eff HH->bbtautau (test set)": 0.38054989816700613
+    }
+  },
+  "hh2b2tau": {
+    "Loose": {
+      "threshold": 3.82421875,
+      "rate_khz": 49.96784048882457,
+      "rate_err_khz": 1.417277903505724,
+      "eff HH4b (50k CMSSW nano)": 0.57556,
+      "eff HH->bbtautau (test set)": 0.8212830957230143
+    },
+    "Medium": {
+      "threshold": 4.9501953125,
+      "rate_khz": 19.97909631773597,
+      "rate_err_khz": 0.8961849497350038,
+      "eff HH4b (50k CMSSW nano)": 0.45174,
+      "eff HH->bbtautau (test set)": 0.7338085539714868
+    },
+    "Tight": {
+      "threshold": 5.681640625,
+      "rate_khz": 9.969448464383342,
+      "rate_err_khz": 0.6330606105492692,
+      "eff HH4b (50k CMSSW nano)": 0.37958,
+      "eff HH->bbtautau (test set)": 0.6584521384928717
+    }
+  }
+}
