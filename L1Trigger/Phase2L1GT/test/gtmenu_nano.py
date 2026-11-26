@@ -1,11 +1,12 @@
 """Phase-2 L1 emulation + P2GT menu (incl. the ML seed) -> one flat NanoAOD file.
 
 Per event the output holds:
-  L1GTScore_score             event-tagger logit (L1GTScoreProducer)
+  L1GTScore_score             HH4b event-tagger logit (L1GTScoreProducer)
+  L1GTScoreHH2b2tau_score     HH->bbtautau event-tagger logit (L1GTScoreProducerHH2b2tau)
   L1GTScoreInputs_<feature>   the 62 raw model inputs, named as in the training
                               (TopoFlow/event_tagger RAW_FEATURE_NAMES)
   L1_<seed>_final             P2GT algo-block decision of every menu seed,
-                              e.g. L1_pEventTagger0p95_final
+                              e.g. L1_pEventTaggerHH4b_<Loose,Medium,Tight>_final, L1_pEventTaggerHH2b2tau_<WP>_final
   run, luminosityBlock, event
 
     cmsRun L1Trigger/Phase2L1GT/test/gtmenu_nano.py [inputFiles=a.root,b.root]
@@ -21,7 +22,7 @@ from FWCore.ParameterSet.VarParsing import VarParsing
 
 options = VarParsing("analysis")
 options.register("menu", "v0p0_2026", VarParsing.multiplicity.singleton, VarParsing.varType.string,
-                 'GT menu: "v0p0_2026" or "step1_2024" (both contain pEventTagger0p95)')
+                 'GT menu: "v0p0_2026" or "step1_2024" (both contain the ML-seed working points)')
 options.register("threads", 8, VarParsing.multiplicity.singleton, VarParsing.varType.int, "number of threads")
 options.setDefault("maxEvents", 1000)
 options.setDefault("outputFile", "l1t_menu_scores_nano.root")
@@ -121,8 +122,16 @@ process.l1tGTScoreInputsTable = cms.EDProducer(
     ),
 )
 
+# second model (HH->bbtautau tagger): same inputs, so only its score is stored
+process.l1tGTScoreHH2b2tauTable = process.l1tGTScoreTable.clone(
+    src=cms.InputTag("l1tGTScoreProducerHH2b2tau"),
+    name=cms.string("L1GTScoreHH2b2tau"),
+    doc=cms.string("HH->bbtautau event tagger output (linear logit)"),
+)
+
 process.nanoTables = cms.Task(
-    process.l1tP2GTTrigConvert, process.l1tGTScoreTable, process.l1tGTScoreInputsTable
+    process.l1tP2GTTrigConvert, process.l1tGTScoreTable, process.l1tGTScoreInputsTable,
+    process.l1tGTScoreHH2b2tauTable,
 )
 
 process.nanoOutput = cms.OutputModule(
